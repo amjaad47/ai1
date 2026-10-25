@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الذكاء الاصطناعي وتطوير التعليم</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+:root {
+  --green: #11423b;
+  --green2: #176b64;
+  --mint: #e9f5f0;
+  --white: #ffffff;
+  --gold: #e5b95c;
+  --text: #24413c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Tajawal', sans-serif;
+  background: #edf3f0;
+  color: var(--text);
+}
+
+header {
+  background: var(--green);
+  color: white;
+  padding: 14px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.counter {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.progress {
+  height: 5px;
+  background: #d6e5de;
+}
+
+.progress div {
+  height: 100%;
+  width: 20%;
+  background: var(--gold);
+  transition: width .3s;
+}
+
+main {
+  max-width: 1050px;
+  margin: 25px auto;
+  padding: 0 16px;
+}
+
+.slide {
+  display: none;
+  min-height: 72vh;
+  background: white;
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 12px 35px #11423b12;
+  border-top: 7px solid var(--green2);
+  animation: appear .35s ease;
+}
+
+.slide.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2, h3 {
+  color: var(--green);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.4;
+}
+
+h2 {
+  font-size: clamp(25px, 4vw, 34px);
+  border-right: 5px solid var(--gold);
+  padding-right: 13px;
+  margin-bottom: 22px;
+}
+
+h3 {
+  margin-bottom: 8px;
+}
+
+p, li {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-icon {
+  font-size: 65px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 22px;
+  color: var(--green2);
+  font-weight: 700;
+}
+
+.pill {
+  display: inline-block;
+  background: var(--mint);
+  color: var(--green);
+  border-radius: 30px;
+  padding: 9px 18px;
+  font-weight: 700;
+  margin: 8px 4px;
+}
+
+.card {
+  background: #f5f9f7;
+  border: 1px solid #dcebe4;
+  border-radius: 15px;
+  padding: 17px;
+  margin: 12px 0;
+}
+
+.card strong {
+  color: var(--green2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.small-card {
+  background: var(--mint);
+  border-radius: 14px;
+  padding: 14px;
+  min-height: 80px;
+}
+
+.small-card strong {
+  color: var(--green);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.question {
+  background: #fff8e8;
+  border: 1px solid #f1dfad;
+  border-radius: 15px;
+  padding: 17px;
+  margin-top: 14px;
+}
+
+.answer {
+  display: none;
+  color: var(--green2);
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.answer.show {
+  display: block;
+}
+
+button {
+  border: 0;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 11px 18px;
+  transition: .2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.btn {
+  background: var(--green);
+  color: white;
+}
+
+.btn.gold {
+  background: var(--gold);
+  color: #263c34;
+}
+
+.btn.light {
+  background: var(--mint);
+  color: var(--green);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 28px;
+}
+
+.nav button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.tag {
+  color: var(--green2);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.game-box {
+  text-align: center;
+  background: linear-gradient(145deg, #11423b, #176b64);
+  color: white;
+  border-radius: 22px;
+  padding: 25px;
+  margin-top: 16px;
+}
+
+.game-box h3 {
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.game-question {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.7;
+  min-height: 75px;
+}
+
+.game-answer {
+  display: none;
+  background: white;
+  color: var(--green);
+  border-radius: 12px;
+  padding: 13px;
+  margin: 15px 0;
+  font-weight: 700;
+}
+
+.game-answer.show {
+  display: block;
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.team {
+  background: var(--mint);
+  border-radius: 14px;
+  padding: 13px 5px;
+  color: var(--green);
+}
+
+.team b {
+  display: block;
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.team button {
+  padding: 7px 12px;
+  margin-top: 8px;
+  background: white;
+  color: var(--green);
+}
+
+.final-names {
+  background: var(--mint);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 18px;
+}
+
+.final-names p {
+  margin: 7px 0;
+}
+
+footer {
+  text-align: center;
+  color: #71847d;
+  font-size: 13px;
+  padding: 0 10px 20px;
+}
+
+@media (max-width: 650px) {
+  .slide {
+    padding: 22px 17px;
+    min-height: 70vh;
+  }
+
+  .grid, .grid.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  p, li {
+    font-size: 16px;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .scoreboard {
+    gap: 6px;
+  }
+
+  .team {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">✦ رحلة في عالم الذكاء الاصطناعي</div>
+  <div class="counter" id="counter">الصفحة 1 من 5</div>
+</header>
+
+<div class="progress"><div id="progress"></div></div>
+
+<main>
+
+<!-- الصفحة الأولى -->
+<section class="slide active">
+  <div class="hero">
+    <div class="hero-icon">🤖</div>
+    <div class="tag">التقنية • الابتكار • المستقبل</div>
+    <h1>الذكاء الاصطناعي<br>وتطوير التعليم</h1>
+    <p class="subtitle">كيف نجعل التقنية وسيلة لتعلّم أفضل؟</p>
+
+    <div style="margin:20px 0">
+      <span class="pill">التعلّم الذكي</span>
+      <span class="pill">حل المشكلات</span>
+      <span class="pill">مستقبل التقنية</span>
+    </div>
+
+    <div class="card">
+      <h3>سؤال تمهيدي 💡</h3>
+      <p>وش تعرفون عن الذكاء الاصطناعي؟ وأين تشوفون استخداماته في حياتنا اليومية؟</p>
+    </div>
+  </div>
+
+  <h2>مفهوم الذكاء الاصطناعي</h2>
+  <div class="card">
+    الذكاء الاصطناعي (AI): هو تقنية تمكّن الأجهزة والبرامج من محاكاة ذكاء الإنسان، مثل التعلّم والتفكير وحل المشكلات واتخاذ القرارات.
+  </div>
+
+  <h2>معايير الحكم على نظم الذكاء الاصطناعي</h2>
+  <p>هي معايير نقيس بها نجاح النظام وكفاءته، وتشمل:</p>
+
+  <div class="grid">
+    <div class="small-card">⏱️ <strong>وقت التنفيذ</strong>الوقت المستغرق للتنفيذ</div>
+    <div class="small-card">💰 <strong>التكلفة</strong>تكلفة إنشاء النظام</div>
+    <div class="small-card">🏢 <strong>احتياجات الإدارة</strong>تلبية احتياجات الإدارة</div>
+    <div class="small-card">🌐 <strong>شبكة الحاسب</strong>التأثير على الشبكة</div>
+    <div class="small-card">💡 <strong>النصائح</strong>تقديم نصائح معقولة</div>
+    <div class="small-card">📊 <strong>الأرباح والتكلفة</strong>مقارنة الأرباح بالتكلفة</div>
+    <div class="small-card">👩‍🏫 <strong>آراء الخبراء</strong>التوافق مع آراء الخبراء</div>
+    <div class="small-card">🧩 <strong>حل المشكلات</strong>نجاح النظام في حلها</div>
+    <div class="small-card">🧠 <strong>سرعة التعلّم</strong>سرعة تعلم النظام</div>
+  </div>
+
+  <div class="question">
+    <strong>السؤال الأول:</strong> ما الهدف من معايير الحكم على نظم الذكاء الاصطناعي؟
+    <br>
+    <button class="btn light" onclick="toggleAnswer('a1')">إظهار الإجابة</button>
+    <div class="answer" id="a1">تقييم كفاءة النظام ونجاحه.</div>
+  </div>
+
+  <div class="question">
+    <strong>السؤال الثاني:</strong> اذكري معيارين للحكم على النظام.
+    <br>
+    <button class="btn light" onclick="toggleAnswer('a2')">إظهار الإجابة</button>
+    <div class="answer" id="a2">الوقت والتكلفة.</div>
+  </div>
+</section>
+
+<!-- الصفحة الثانية -->
+<section class="slide">
+  <div class="tag">المحور الثاني • التعليم الذكي</div>
+  <h2>الذكاء الاصطناعي وتطوير التعليم</h2>
+
+  <div class="card">
+    <h3>ما استخدامه في التعليم؟ 🎓</h3>
+    يساعد على تطوير العملية التعليمية من خلال تقديم محتوى يناسب مستوى كل متعلم، والتفاعل معه، ومتابعة تقدمه وتصحيح أخطائه.
+  </div>
+
+  <div class="card">
+    <h3>ما الهدف منه؟</h3>
+    زيادة مهارات المتعلم، وتحسين جودة التعليم، وتوفير تجربة تعليمية أكثر مرونة وفاعلية.
+  </div>
+
+  <h2>المفاهيم الرئيسية في التعليم الذكي</h2>
+  <div class="grid two">
+    <div class="small-card">
+      <strong>1. تمثيل المعرفة</strong>
+      Knowledge Representation
+    </div>
+    <div class="small-card">
+      <strong>2. الاستدلال القائم على الحالة</strong>
+      Case-Based Reasoning
+    </div>
+    <div class="small-card">
+      <strong>3. معالجة اللغات الطبيعية</strong>
+      NLP
+    </div>
+    <div class="small-card">
+      <strong>4. أدوات تأليف نظم التعليم الذكية</strong>
+      Authoring Shells
+    </div>
+    <div class="small-card">
+      <strong>5. الذكاء الاصطناعي الموزّع</strong>
+      Distributed AI
+    </div>
+    <div class="small-card">
+      <strong>6. نظم التعليم الذكية</strong>
+      Intelligent Tutoring Systems
+    </div>
+  </div>
+
+  <h2 style="margin-top:25px">أهمية نظم التعليم الذكية</h2>
+  <div class="grid">
+    <div class="small-card"><strong>👤 التعلّم الفردي</strong>مراعاة الفروق الفردية.</div>
+    <div class="small-card"><strong>💬 التفاعل</strong>الشرح والإجابة والتوجيه.</div>
+    <div class="small-card"><strong>🧩 تنمية المهارات</strong>التفكير وحل المشكلات.</div>
+    <div class="small-card"><strong>🔄 المرونة</strong>تكييف المحتوى حسب الحاجة.</div>
+    <div class="small-card"><strong>✅ التغذية الراجعة</strong>معرفة الأخطاء وتصحيحها.</div>
+  </div>
+
+  <div class="question">
+    <strong>الفكرة الأساسية:</strong>
+    نظم التعليم الذكية ليست مجرد برامج تعرض المعلومات، بل أنظمة تستخدم الذكاء الاصطناعي لفهم احتياجات المتعلم والتفاعل معه وتكييف التعليم بما يناسبه.
+  </div>
+
+  <div class="question">
+    <strong>سؤال سريع:</strong> هل نظم التعليم الذكية تعرض المعلومات فقط؟
+    <br>
+    <button class="btn light" onclick="toggleAnswer('a3')">إظهار الإجابة</button>
+    <div class="answer" id="a3">لا، بل تتفاعل مع المتعلم وتكيّف التعليم وفق احتياجاته.</div>
+  </div>
+</section>
+
+<!-- الصفحة الثالثة -->
+<section class="slide">
+  <div class="tag">المحور الثالث • من الفكرة إلى التطبيق</div>
+  <h2>آليات تفعيل الذكاء الاصطناعي</h2>
+
+  <div class="card">
+    يساهم الذكاء الاصطناعي في تعزيز الاقتصاد، وزيادة الإنتاجية، وتحسين جودة الخدمات، وتقليل التكاليف. وللاستفادة منه، تحتاج الدول إلى تطوير المهارات والتقنيات ودعم الابتكار.
+  </div>
+
+  <h3>أهم آليات التفعيل الثمانية</h3>
+
+  <div class="grid two">
+    <div class="small-card">
+      <strong>1. 📢 التوعية والتثقيف</strong>
+      نشر الوعي وتشجيع استخدام الذكاء الاصطناعي.
+    </div>
+    <div class="small-card">
+      <strong>2. 🧭 دعم القيادات</strong>
+      توعية المسؤولين بأهميته في تطوير الخدمات.
+    </div>
+    <div class="small-card">
+      <strong>3. 👥 تطوير فرق العمل</strong>
+      دراسة الفرص والتحديات وتطبيق الحلول الذكية.
+    </div>
+    <div class="small-card">
+      <strong>4. 🧠 تنمية المهارات</strong>
+      تدريب الموظفين على الذكاء الاصطناعي وتحليل البيانات.
+    </div>
+    <div class="small-card">
+      <strong>5. 🎓 تطوير التعليم</strong>
+      إعداد برامج جامعية تناسب الوظائف المستقبلية.
+    </div>
+    <div class="small-card">
+      <strong>6. 🔬 إنشاء مراكز بحثية</strong>
+      دعم الأبحاث والابتكار في مختلف القطاعات.
+    </div>
+    <div class="small-card">
+      <strong>7. 🥽 التعلم الافتراضي</strong>
+      استخدام الواقع الافتراضي في التعليم والتدريب.
+    </div>
+    <div class="small-card">
+      <strong>8. 🏛️ تطوير الخدمات الحكومية</strong>
+      تحسين الخدمات المقدمة للجمهور.
+    </div>
+  </div>
+
+  <div class="question">
+    <strong>خلونا نفكر! 💭</strong>
+    أي آلية من هذه الآليات تتوقعون أن يكون لها أثر واضح في حياتنا؟ وليش؟
+  </div>
+</section>
+
+<!-- الصفحة الرابعة -->
+<section class="slide">
+  <div class="tag">الاستراتيجية التفاعلية • تحدّي الفرق</div>
+  <h2>🎮 لعبة: تحدّي العقول الذكية</h2>
+
+  <p>الحين جاء وقت التحدّي! بنقسم الطالبات إلى ثلاثة فرق، وكل فريق يفكر ويتعاون للإجابة عن الأسئلة.</p>
+
+  <div class="grid">
+    <div class="small-card">
+      <strong>💚 الفريق الأول</strong>
+      فريق الابتكار
+    </div>
+    <div class="small-card">
+      <strong>💚 الفريق الثاني</strong>
+      فريق المستقبل
+    </div>
+    <div class="small-card">
+      <strong>💚 الفريق الثالث</strong>
+      فريق الإبداع
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>طريقة اللعب 📋</h3>
+    <p>١. يظهر سؤال على الشاشة.</p>
+    <p>٢. تتشاور كل الفرق لمدة 15 ثانية.</p>
+    <p>٣. الفريق الأسرع يرفع يده ويجيب.</p>
+    <p>٤. الإجابة الصحيحة = نقطة واحدة.</p>
+    <p>٥. في النهاية نفوز معًا بالمعرفة، والفريق الأعلى نقاطًا هو بطل التحدّي! 🏆</p>
+  </div>
+
+  <div class="scoreboard">
+    <div class="team">
+      فريق الابتكار
+      <b id="score0">0</b>
+      <button onclick="addScore(0)">+ نقطة</button>
+    </div>
+    <div class="team">
+      فريق المستقبل
+      <b id="score1">0</b>
+      <button onclick="addScore(1)">+ نقطة</button>
+    </div>
+    <div class="team">
+      فريق الإبداع
+      <b id="score2">0</b>
+      <button onclick="addScore(2)">+ نقطة</button>
+    </div>
+  </div>
+
+  <div class="game-box">
+    <h3 id="round">السؤال 1 من 5</h3>
+    <div class="game-question" id="gameQuestion">
+      ما المقصود بالذكاء الاصطناعي؟
+    </div>
+
+    <div class="game-answer" id="gameAnswer">
+      تقنية تمكّن الأجهزة والبرامج من محاكاة ذكاء الإنسان.
+    </div>
+
+    <button class="btn gold" onclick="revealGameAnswer()">كشف الإجابة</button>
+    <button class="btn light" onclick="nextQuestion()">السؤال التالي ←</button>
+  </div>
+
+  <p style="text-align:center;color:#71847d">
+    تذكّرن: التعاون والتفكير أهم من سرعة الإجابة! 🌟
+  </p>
+</section>
+
+<!-- الصفحة الخامسة -->
+<section class="slide">
+  <div class="hero">
+    <div class="hero-icon">✨</div>
+    <div class="tag">وصلنا إلى نهاية رحلتنا</div>
+    <h1>قصة الذكاء الاصطناعي</h1>
+    <p class="subtitle">من فكرة صغيرة إلى مستقبل واسع</p>
+  </div>
+
+  <div class="card">
+    <p>
+      تخيّلوا أن طالبة كانت تواجه صعوبة في فهم أحد الدروس، فاستعانت بأداة ذكاء اصطناعي لتشرح لها الفكرة بطريقة أبسط، ثم تدربت على أسئلة تناسب مستواها، واكتشفت أخطاءها وصححتها.
+    </p>
+    <p>
+      مع الوقت، أصبحت أكثر فهمًا وثقة بقدراتها. لم تتعلم الأداة بدلًا عنها، بل ساعدتها على التعلم بطريقة أفضل.
+    </p>
+    <h3 style="text-align:center">وهنا نتذكر أن الذكاء الاصطناعي أداة تساعد الإنسان، وأن الإبداع والتفكير يبدآن منا. 💚</h3>
+  </div>
+
+  <div class="final-names">
+    <h2>إعداد المتدربات</h2>
+    <p>🌿 أمجاد نور الرشيدي</p>
+    <p>🌿 دلع بدر الحربي</p>
+    <p>🌿 عهد شعف الحربي</p>
+    <hr style="border:0;border-top:1px solid #c8ded4;margin:16px 0">
+    <h3>المدربة: هاجر العييدي</h3>
+  </div>
+
+  <div class="hero" style="margin-top:25px">
+    <h2 style="border:0;padding:0">شكرًا لحسن استماعكن 🤍</h2>
+    <p>هل أنتن مستعدات لصناعة مستقبل أكثر ذكاءً؟</p>
+    <button class="btn" onclick="goToSlide(0)">العودة للبداية ↻</button>
+  </div>
+</section>
+
+<div class="nav">
+  <button class="btn light" id="prev" onclick="changeSlide(-1)">→ السابقة</button>
+  <span id="navText">1 / 5</span>
+  <button class="btn" id="next" onclick="changeSlide(1)">التالية ←</button>
+</div>
+
+</main>
+
+<footer>الذكاء الاصطناعي وتطوير التعليم • عرض تفاعلي</footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function updateSlides() {
+  slides.forEach((slide, index) => {
+    slide.classList.toggle('active', index === currentSlide);
+  });
+
+  document.getElementById('counter').textContent =
+    `الصفحة ${currentSlide + 1} من ${slides.length}`;
+
+  document.getElementById('navText').textContent =
+    `${currentSlide + 1} / ${slides.length}`;
+
+  document.getElementById('progress').style.width =
+    `${((currentSlide + 1) / slides.length) * 100}%`;
+
+  document.getElementById('prev').disabled = currentSlide === 0;
+  document.getElementById('next').disabled =
+    currentSlide === slides.length - 1;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function changeSlide(direction) {
+  currentSlide = Math.max(
+    0,
+    Math.min(slides.length - 1, currentSlide + direction)
+  );
+  updateSlides();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateSlides();
+}
+
+function toggleAnswer(id) {
+  document.getElementById(id).classList.toggle('show');
+}
+
+const questions = [
+  {
+    q: 'ما المقصود بالذكاء الاصطناعي؟',
+    a: 'تقنية تمكّن الأجهزة والبرامج من محاكاة ذكاء الإنسان.'
+  },
+  {
+    q: 'اذكري معيارين للحكم على نظم الذكاء الاصطناعي.',
+    a: 'مثل الوقت المستغرق للتنفيذ وتكلفة إنشاء النظام.'
+  },
+  {
+    q: 'كيف تساعد نظم التعليم الذكية المتعلمين؟',
+    a: 'بتكييف المحتوى، ومتابعة التقدم، وتصحيح الأخطاء، ومراعاة الفروق الفردية.'
+  },
+  {
+    q: 'اذكري آلية واحدة لتفعيل الذكاء الاصطناعي.',
+    a: 'مثل التوعية والتثقيف، أو تنمية المهارات، أو تطوير التعليم، أو الخدمات الحكومية.'
+  },
+  {
+    q: 'كيف يمكن للذكاء الاصطناعي أن يساعد في حياتنا اليومية؟',
+    a: 'يساعد في إنجاز المهام، والوصول للمعلومات، والتعلّم، وحل بعض المشكلات.'
+  }
+];
+
+let questionIndex = 0;
+let scores = [0, 0, 0];
+
+function renderQuestion() {
+  document.getElementById('round').textContent =
+    `السؤال ${questionIndex + 1} من ${questions.length}`;
+
+  document.getElementById('gameQuestion').textContent =
+    questions[questionIndex].q;
+
+  document.getElementById('gameAnswer').textContent =
+    questions[questionIndex].a;
+
+  document.getElementById('gameAnswer').classList.remove('show');
+}
+
+function revealGameAnswer() {
+  document.getElementById('gameAnswer').classList.add('show');
+}
+
+function nextQuestion() {
+  questionIndex = (questionIndex + 1) % questions.length;
+  renderQuestion();
+}
+
+function addScore(teamIndex) {
+  scores[teamIndex]++;
+  document.getElementById(`score${teamIndex}`).textContent =
+    scores[teamIndex];
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'ArrowLeft') changeSlide(1);
+  if (event.key === 'ArrowRight') changeSlide(-1);
+});
+
+updateSlides();
+renderQuestion();
+</script>
+
+</body>
+</html>
